@@ -19,22 +19,22 @@
             <div class="header">
                 Message
             </div>
-            <p>Création d'un utilisateur</p>
+            <p>Modification de l'utilisateur <?= $user->getFirstname() ?> <?= $user->getLastname() ?></p>
         </div>
     </div>
-    <form action="<?= $this->url->get('user/message/add') ?>" method="post">
+    <form action="<?= $this->url->get('user/message/update/' . $user->getId()) ?>"  method="post">
         <table id="example" class="ui celled table" cellspacing="0" width="100%">
             <tr>
                 <td>
                     <p>Prénom</p>
                     <div style="width: 100%" class="ui input">
-                        <input name="firstname" type="text" placeholder="Entrez un prénom">
+                        <input name="firstname" type="text" value="<?= $user->getFirstname() ?>">
                     </div>
                 </td>
                 <td>
                     <p>Nom</p>
                     <div style="width: 100%" class="ui input">
-                        <input name="lastname" type="text" placeholder="Entrez un nom">
+                        <input name="lastname" type="text" value="<?= $user->getLastname() ?>">
                     </div>
                 </td>
             </tr>
@@ -42,13 +42,13 @@
                 <td>
                     <p>Login</p>
                     <div style="width: 100%" class="ui input">
-                        <input name="login" type="text" placeholder="Entrez un login">
+                        <input name="login" type="text" value="<?= $user->getLogin() ?>">
                     </div>
                 </td>
                 <td>
                     <p>Mot de passe</p>
                     <div style="width: 100%" class="ui input">
-                        <input name="password" type="text" placeholder="Entrez un mdp">
+                        <input name="password" type="text" value="<?= $user->getPassword() ?>">
                     </div>
                 </td>
             </tr>
@@ -56,7 +56,7 @@
                 <td colspan="2">
                     <p>Email</p>
                     <div style="width: 100%" class="ui input">
-                        <input name="email" type="text" placeholder="Entrez un mail">
+                        <input name="email" type="text" value="<?= $user->getEmail() ?>">
                     </div>
                 </td>
             </tr>
@@ -64,7 +64,7 @@
                 <td colspan="2">
                     <p>Rôle</p>
                     <div style="width: 100%" class="ui input">
-                        <input name="role" type="text" placeholder="Choisissez le role">
+                        <input name="role" type="text" value="<?= $user->getRole()->getName() ?>">
                     </div>
                 </td>
             </tr>

@@ -14,6 +14,7 @@
             </div>
         </div>
     </div>
+    <?= $this->tag->linkTo(['user/index', 'Retour à la page d\'accueil', 'class' => 'green fluid ui button']) ?>
     </body>
 </html>
 

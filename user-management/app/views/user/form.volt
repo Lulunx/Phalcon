@@ -7,7 +7,11 @@
     </head>
     <body>
     <div class="ui menu">
-        {{ link_to("user/index", "Retour à la liste ...", "class": "item") }}
+        <a class="item" href="{{ url("user/index") }}">
+            <i class="sign out icon">
+            </i>
+            Retour à la liste ...
+        </a>
     </div>
     <div class="ui icon message">
         <i class="info icon"></i>
@@ -15,63 +19,63 @@
             <div class="header">
                 Message
             </div>
-            <p>Modification de l'utilisateur Truc much</p>
+            <p>Création d'un utilisateur</p>
         </div>
     </div>
-    <table id="example" class="ui celled table" cellspacing="0" width="100%">
-        <tr>
-            <td>
-                <p>Prénom</p>
-                <div class="ui input">
-                    <input type="text">
-                </div>
-            </td>
-            <td>
-                <p>Nom</p>
-                <div class="ui input">
-                    <input type="text">
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <p>Login</p>
-                <div class="ui input">
-                    <input type="text">
-                </div>
-            </td>
-            <td>
-                <p>Mot de passe</p>
-                <div class="ui input">
-                    <input type="text">
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <p>Email</p>
-                <div class="ui fluid action input">
-                    <input type="text">
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <p>Rôle</p>
-                <div class="ui fluid input">
-                    <input type="text">
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <button class="fluid ui green button">Valider</button>
-            </td>
-            <td>
-                <button class="fluid ui grey button">Réinitialiser</button>
-            </td>
-        </tr>
-    </table>
+    <form action="{{url("user/message/add")}}" method="post">
+        <table id="example" class="ui celled table" cellspacing="0" width="100%">
+            <tr>
+                <td>
+                    <p>Prénom</p>
+                    <div style="width: 100%" class="ui input">
+                        <input name="firstname" type="text" placeholder="Entrez un prénom">
+                    </div>
+                </td>
+                <td>
+                    <p>Nom</p>
+                    <div style="width: 100%" class="ui input">
+                        <input name="lastname" type="text" placeholder="Entrez un nom">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Login</p>
+                    <div style="width: 100%" class="ui input">
+                        <input name="login" type="text" placeholder="Entrez un login">
+                    </div>
+                </td>
+                <td>
+                    <p>Mot de passe</p>
+                    <div style="width: 100%" class="ui input">
+                        <input name="password" type="text" placeholder="Entrez un mdp">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <p>Email</p>
+                    <div style="width: 100%" class="ui input">
+                        <input name="email" type="text" placeholder="Entrez un mail">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <p>Rôle</p>
+                    <div style="width: 100%" class="ui input">
+                        <input name="role" type="text" placeholder="Choisissez le role">
+                    </div>
+                </td>
+            </tr>
+
+        </table>
+        <div class="ui two bottom attached buttons">
+            <input type="submit" class="fluid ui green button" value="Sauvegarder">
+            <input type="reset" class="fluid ui grey button">
+        </div>
+    </form>
+
     </body>
 </html>
 

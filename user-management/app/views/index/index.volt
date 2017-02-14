@@ -9,10 +9,10 @@
         <h2 style="padding-left: 5%">Affichage des users</h2>
 
         <div class="ui menu">
-            <a class="item">
+            <a class="item" href="{{ url("user/form") }}">
                 <i class="add user icon">
                 </i>
-                Nouvel utilisateur ...
+                Nouvel <utilisateur></utilisateur> ...
             </a>
         </div>
 
@@ -49,7 +49,7 @@
                 </td>
                 <td>
 
-                    {{linkTo("user/form/"~user.getId(), "<i class='bordered edit icon'></i>")}}
+                    {{linkTo("user/update/"~user.getId(), "<i class='bordered edit icon'></i>")}}
                     {{linkTo("user/message/delete/"~user.getId(), "<i class='bordered red remove icon'></i>")}}
 
                 </td>

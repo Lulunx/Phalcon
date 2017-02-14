@@ -25,11 +25,9 @@ class UserController extends ControllerBase
     /*
      * Formulaire de saisie/modification d'un utilisateur, id est la clé primaire de l'utilisateur à modifier
      */
-    function formAction($id=1)
+    function formAction($id=-1)
     {
-        $users=User::find([
-                "id = $id"]
-        );
+        $users=User::findFirst($id);
         $this->view->setVar("user",$users);
     }
 
@@ -38,7 +36,8 @@ class UserController extends ControllerBase
      */
     function updateAction($id)
     {
-
+        $users=User::findFirst($id);
+        $this->view->setVar("user",$users);
     }
 
     /*
@@ -46,7 +45,8 @@ class UserController extends ControllerBase
      */
     function deleteAction($id=-1)
     {
-
+        $user=User::findFirst($id);
+        $user->delete();
     }
 
     /*
@@ -54,7 +54,48 @@ class UserController extends ControllerBase
      */
     function messageAction($action="",$id=-1)
     {
-        $message="L'utilisateur a bien été supprimé !";
-        $this->view->setVar("message",$message);
+        if ($action == "delete") {
+            $message = $this->deleteAction($id);
+            $message = "L'utilisateur a bien été supprimé !";
+        } else if ($action == "add" || $action == "update") {
+            if (isset($_POST['firstname']))
+                $firstname = $_POST['firstname'];
+            if (isset($_POST['lastname']))
+                $lastname = $_POST['lastname'];
+            if (isset($_POST['email']))
+                $email = $_POST['email'];
+            if (isset($_POST['role']))
+                $role = $_POST['role'];
+            if (isset($_POST['password']))
+                $password = $_POST['password'];
+            if (isset($_POST['login']))
+                $login = $_POST['login'];
+
+            if ($action == "add") {
+                $user=new User();
+                $user->setFirstname($firstname);
+                $user->setLastname($lastname);
+                $user->setEmail($email);
+                $user->setidRole(2);
+                $user->setPassword($password);
+                $user->setLogin($login);
+                $user->save();
+                $message = "L'utilisateur a bien été ajouté !";
+            }
+
+            if ($action == "update") {
+                $user=User::findFirst($id);
+                $user->setFirstname($firstname);
+                $user->setLastname($lastname);
+                $user->setEmail($email);
+                $user->setidRole(2);
+                $user->setPassword($password);
+                $user->setLogin($login);
+                $user->save();
+                $message = "L'utilisateur a bien été modifié !";
+            }
+
+            $this->view->setVar("message", $message);
+        }
     }
 }
