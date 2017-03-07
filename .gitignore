@@ -47,3 +47,4 @@ Temporary Items
 .apdisk
 
 .user-management/config/config.php
+startup/app/vendor/**
