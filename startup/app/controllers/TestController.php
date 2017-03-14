@@ -37,12 +37,15 @@ class TestController extends ControllerBase{
     public function ChangeCssAction(){
         $semantic=$this->jquery->semantic();
         $bt1=$semantic->htmlButton("btnPage1","Bouton 1");
+        $bt1->setProperty("data-description","Ceci est la description du bouton 1");
         $bt1->addIcon("user");
         $bt2=$semantic->htmlButton("btnPage2","Bouton 2");
         $bt2->addIcon("user");
-        $bt1->getOnClick("test/page1", "#PageContent", ["attr"=>"data-ajax","ajaxTransition"=>"random"]);
-        $bt2->getOnClick("test/page2", "#PageContent", ["attr"=>"data-ajax","ajaxTransition"=>"random"]);
-        $bt1->on("mouseover","test/page2", "#PageContent", ["attr"=>"data-ajax","ajaxTransition"=>"random"]);
+        $bt2->setProperty("data-description","Ceci est la description du bouton 2");
+        $bt1->getOnClick("test/page1", "#PageContent");
+        $bt2->getOnClick("test/page2", "#PageContent");
+        $bt1->on("mouseover",$this->jquery->html("#PageDesc",$bt1->getProperty("data-description")));
+        $bt2->on("mouseover",$this->jquery->html("#PageDesc",$bt2->getProperty("data-description")));
         $this->jquery->compile($this->view);
     }
 
@@ -57,14 +60,14 @@ class TestController extends ControllerBase{
 
     public function page1Action($id=""){
         $semantic=$this->jquery->semantic();
-        $info=$semantic->htmlMessage("mess","Contenu de la page 1".$id);
+        $info=$semantic->htmlMessage("mess","Contenu de la page 1");
         $info->setIcon("info circle");
         echo $info;
     }
 
     public function page2Action($id=""){
         $semantic=$this->jquery->semantic();
-        $info=$semantic->htmlMessage("mess","Contenu de la page 2".$id);
+        $info=$semantic->htmlMessage("mess","Contenu de la page 2");
         $info->setIcon("info circle");
         echo $info;
     }
@@ -72,6 +75,25 @@ class TestController extends ControllerBase{
     public function reponseAction($id=""){
         $semantic=$this->jquery->semantic();
         $info=$semantic->htmlMessage("mess","Reponse ok".$id);
+        $info->setIcon("info circle");
+        echo $info;
+    }
+
+    public function postformAction(){
+        $semantic=$this->jquery->semantic();
+        $form=$semantic->htmlForm("form1");
+        $form->addErrorMessage();
+        $form->addInput("lastname","Nom")->addRule("empty");
+        $form->addInput("email","Email")->addRules(["empty","email"]);
+        $form->addButton("Envoyer","Envoyer")->asSubmit();
+        $form->submitOn("click","Envoyer","test/submit","#postReponse");
+        $this->jquery->compile($this->view);
+        echo $form;
+    }
+
+    public function submitAction($id=""){
+        $semantic=$this->jquery->semantic();
+        $info=$semantic->htmlMessage("mess",$_POST['lastname']." ".$_POST['email']);
         $info->setIcon("info circle");
         echo $info;
     }

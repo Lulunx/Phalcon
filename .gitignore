@@ -48,3 +48,4 @@ Temporary Items
 
 .user-management/config/config.php
 startup/app/vendor/**
+Invo/app/vendor/**
