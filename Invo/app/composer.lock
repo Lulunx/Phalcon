@@ -35,12 +35,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpMv/phpMv-UI.git",
-                "reference": "5f7aeedd5a7b54bdf163c32e0b9323191f933695"
+                "reference": "fcfed56bcba246e8a5ca854ba97a8f46ceb5d66b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpMv/phpMv-UI/zipball/5f7aeedd5a7b54bdf163c32e0b9323191f933695",
-                "reference": "5f7aeedd5a7b54bdf163c32e0b9323191f933695",
+                "url": "https://api.github.com/repos/phpMv/phpMv-UI/zipball/fcfed56bcba246e8a5ca854ba97a8f46ceb5d66b",
+                "reference": "fcfed56bcba246e8a5ca854ba97a8f46ceb5d66b",
                 "shasum": ""
             },
             "require": {
@@ -83,7 +83,7 @@
                 "twitter bootstrap",
                 "yii"
             ],
-            "time": "2017-03-13 11:37:29"
+            "time": "2017-03-14 23:35:50"
         }
     ],
     "packages-dev": [],
